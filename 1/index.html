@@ -30,17 +30,7 @@
 
                 <h1 id="introduction">Introduction</h1>
                 <p>
-                    For each subject in the Prokudin-Gorskii collection, three exposures were taken
-                    through a red, a
-                    green, and a blue filter. However, across these three channels, the images are
-                    not perfectly
-                    aligned, so a more intelligent algorithm is needed to produce the photographs in
-                    color. This project
-                    focuses on using single-scale and multi-scale algorithms to align both small and
-                    very large images
-                    from the collection. Additionally, methods of automatically contrasting and
-                    white-balancing the
-                    resulting color images were also explored.
+                    Text
                 </p>
 
 
@@ -53,55 +43,17 @@
 
                 <h2 id="single-scale-alignment-approach">Approach</h2>
                 <p>
-                    For the smaller images, it was efficient enough to work only with the original
-                    resolution. The blue
-                    channel was held constant while the red and green channels were aligned to it.
-                    The algorithm is a
-                    simple exhaustive search across all possible combinations of image shifts
-                    (<code>dx</code> and
-                    <code>dy</code>) both within the range <code>[-delta, delta]</code> (I used
-                    <code>delta=15</code>).
-                    For each of these combinations,
-                    the shifted image was compared to the target using a pixel-wise
-                    sum-absolute-error (SAE) function,
-                    in
-                    which the intensities of corresponding pixels are subtracted, and the absolute
-                    values of these
-                    differences are summed across all pixels. However, before calculating this
-                    error, the border of the
-                    images is cropped by <code>max(int(max(h, w) * 0.045), delta)</code> so that
-                    only the internal
-                    pixels are represented in the error. The <code>int(max(h, w) * 0.045)</code>
-                    term is necessary for
-                    the larger images because their borders are proportionally larger in terms of
-                    number of pixels.
-                    Lastly, the combination of <code>dx</code> and <code>dy</code>
-                    that achieved the lowest error is returned as the final alignment offset.
+                    Text
                 </p>
                 <p>
-                    I also tried using a sum-squared-error (SSE) function as my metric, which did
-                    not work nearly as
-                    well as SAE.
-                    SSE punishes large differences in pixel values much more heavily than SAE does,
-                    which could be a
-                    disadvantage. Many images have artifacts that are <b>only present in some, but
-                        not all, of the color channels</b>, which means the differences in pixel
-                    intensities caused by
-                    these artifacts are
-                    large. With SSE, the error caused by these artifacts are amplified, potentially
-                    drowning out more
-                    meaningful error from other parts of the image. This causes the algorithm to
-                    instead focus on
-                    finding a good match for the artifacts, potentially rejecting perfect matches of
-                    the actual
-                    contents.
+                    Text
                 </p>
 
                 <h2 id="single-scale-alignment-results">Results</h2>
                 <div class="gallery">
-                    <img src="results/cathedral.jpg" />
-                    <img src="results/monastery.jpg" />
-                    <img src="results/tobolsk.jpg" />
+                    <img src="media/cathedral.png" />
+                    <img src="media/monastery.png" />
+                    <img src="media/tobolsk.png" />
                 </div>
 
                 <h2 id="single-scale-alignment-custom-images">Custom Images</h2>
@@ -146,47 +98,15 @@
 
                 <h2 id="multi-scale-alignment-approach">Approach</h2>
                 <p>
-                    For the larger <code>.tif</code> images, an image pyramid was used to speed up
-                    the alignment
-                    process. The levels of the pyramid are processed from coarsest (level
-                    <code>N-1</code>) to finest
-                    (level <code>0</code>). At level <code>i</code>, both the <code>source</code>
-                    image (red or green
-                    channel) and <code>target</code> image (blue channel) are downscaled to
-                    <code>1 / (2 ** i)</code> of
-                    their original dimensions. Then, the single-scale alignment algorithm is run on
-                    these downscaled
-                    images to obtain two offsets, <code>dx</code> and <code>dy</code>. However,
-                    because these offsets
-                    are relative to the dimensions of the downscaled image, they need to be
-                    multiplied by
-                    <code>2 ** i</code> to convert back to the dimensions of the original image.
-                    These converted offsets
-                    are then added to the running totals <code>total_dx</code> and
-                    <code>total_dy</code>, and the
-                    original <code>source</code> image is shifted by these offsets in preparation
-                    for the next
-                    iteration.
+                    <code>text</code>
                 </p>
 
                 <h2 id="multi-scale-alignment-optimizations">Optimizations</h2>
                 <p>
-                    Because calculations at each combination of <code>dx</code> and <code>dy</code>
-                    are independent of
-                    each other, the alignment algorithm could be multi-threaded. With <code>N</code>
-                    threads, thread
-                    <code>i</code> is responsible for computing error values for <code>dy</code> in
-                    <code>range(-delta + i, delta + 1, N)</code> and all <code>dx</code>'s. This
-                    ensures an even
-                    distribution of work across all <code>N</code> threads.
-                    After all threads finish, the combination of <code>dx</code> and <code>dy</code>
-                    with the lowest
-                    error is returned.
+                    text
                 </p>
                 <p>
-                    In the end, this optimization achieved a <code>3.3x</code> speedup, decreasing
-                    average processing
-                    time from about <code>75</code> seconds to <code>23</code> seconds.
+                    text
                 </p>
 
                 <h2 id="multi-scale-alignment-results">Results</h2>
@@ -206,12 +126,7 @@
 
                 <h2 id="multi-scale-alignment-misalignments">Misalignments</h2>
                 <p>
-                    The multi-scale alignment algorithm worked well for all images except
-                    <code>lady.tif</code>, in which the red channel was slightly misaligned. This
-                    could be due to the artifacts in the red channel, which cover a much larger
-                    portion of the image compared to artifacts in the other channels. Slightly
-                    increasing the amount of cropping (shrinking the internal pixels region) before
-                    calculating the error metric helped resolve this issue:
+                    Text
                 </p>
                 <img src="extras\lady_fixed.jpg" width="100%" style="max-width: 750px;" />
 
