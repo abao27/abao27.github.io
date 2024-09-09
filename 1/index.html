@@ -17,8 +17,12 @@
     </div>
     
 
-    <h1>Single-scale Alignment</h1>
-    <h2>Results</h2>
+    <h2>Single-Scale Alignment</h2>
+    <h3> Approach </h3>
+    <p>
+        Exhaustive search, [-15, 15] using L2 norm.
+    </p>
+    <h3> Aligned Images </h3>
     <div class="gallery">
         <p> cathedral.jpg </p>
         <p> Green Offset: (5, 2); Red Offset: (12, 3) </p>
@@ -29,6 +33,18 @@
         <p> tobolsk.jpg </p>
         <p> Green Offset: (3, 3); Red Offset: (6, 3) </p>
         <img src="media/tobolsk.png" />
+    </div>
+
+    <h2>Multiscale Alignment (Image Pyramid)</h2>
+    <h3> Approach </h3>
+    <p>
+        Halve on each level until 400x400. Go up and add the displacements.
+    </p>
+    <h3> Aligned Images </h3>
+    <div class="gallery">
+        <p> cathedral.jpg </p>
+        <p> Green Offset: (5, 2); Red Offset: (12, 3) </p>
+        <img src="media/cathedral.png" />
     </div>
 </body>
 </html>
