@@ -22,74 +22,75 @@
     <h2>Single-Scale Alignment</h2>
     <h3> Approach </h3>
     <p>
-        Exhaustive search, [-15, 15] using L2 norm. Cropped by 15% each side.
+        First, I processed and prepared the <code>.jpg</code> image by splitting it into three equal sections, cropping the outer 15% of the image to remove the dark or black borders and yield a more accurate alignment. I then aligned the images by exhaustively searching over the interval [-15, 15] and finding the best alignment based on Normal Cross-Correlation (NCC). A higher NCC meant a better alignment. Finally, I returned the image with the best alignment, or highest NCC.
     </p>
     <h3> Aligned Images </h3>
     <div class="gallery">
         <p> <code> cathedral.jpg </code> </p>
-        <p> Green: (5, 2) \n
-            Red: (12, 3) </p>
+        <p> Green: (5, 2) </p>
+        <p> Red: (12, 3) </p>
         <img src="media/cathedral.png" />
         <p> <code> monastery.jpg </code> </p>
-        <p> Green: (-3, 2) \n
-            Red: (3, 2) </p>
+        <p> Green: (-3, 2) </p>
+        <p> Red: (3, 2) </p>
         <img src="media/monastery.png" />
         <p> <code> tobolsk.jpg </code> </p>
-        <p> Green: (3, 3) \n
-            Red: (6, 3) </p>
+        <p> Green: (3, 3) </p>
+        <p> Red: (6, 3) </p>
         <img src="media/tobolsk.png" />
     </div>
 
     <h2>Multiscale Alignment (Image Pyramid)</h2>
     <h3> Approach </h3>
     <p>
+        In order to process larger <code> .tif </code> images, I used image pyramids. I processed every image using the same method as I did in the single-scale alignment. Then, I rescaled the image by <code> 0.5 </code>, halving its size for <code> 3 </code> iterations. This means that the pyramid has <code> 3 </code> levels of <code> 0.5 </code>, <code> 0.25 </code> and <code> 0.125 </code> of the original image. I aligned the images starting from the coarsest level (level <code> 3 </code>, <code> 0.125 </code> of the original image), adding each level's displacement multiplied by <code> 2^level </code> to <code> d = (dx, dy) </code>, initialized to <code> (0, 0) </code>. Finally, I used <code> d </code> as the displacement to align the original <code> .tif </code> image and returned it.
         Halve on each level until 400x400. Go up and add the displacements.
     </p>
     <h3> Aligned Images </h3>
     <div class="gallery">
         <p> <code> church.tif </code> </p>
-        <p> Green: (48, 8) \n
-            Red: (86, -8) </p>
+        <p> Green: (48, 8) <\p>
+        <p> Red: (86, -8) </p>
         <img src="media/church.png" />
         <p> <code> emir.tif </code> </p>
-        <p> Green: (78, 44) \n
-            Red: (58, 40) </p>
+        <p> Green: (78, 44) </p>
+        <p> Red: (58, 40) </p>
         <img src="media/emir.png" />
         <p> <code> harvesters.tif </code> </p>
-        <p> Green: (90, 34) \n
-            Red: (90, 14) </p>
+        <p> Green: (90, 34) </p>
+        <p> Red: (90, 14) </p>
         <img src="media/harvesters.png" />
         <p> <code> icon.tif </code> </p>
-        <p> Green: (70, 34) \n
-            Red: (90, 46) </p>
+        <p> Green: (70, 34) </p>
+        <p> Red: (90, 46) </p>
         <img src="media/icon.png" />
         <p> <code> lady.tif </code> </p>
-        <p> Green: (82, 16) \n
-            Red: (90, -6) </p>
+        <p> Green: (82, 16) </p>
+        <p> Red: (90, -6) </p>
         <img src="media/lady.png" />
         <p> <code> melons.tif </code> </p>
-        <p> Green: (90, 4) \n
-            Red: (90, 4) </p>
+        <p> Green: (90, 4) </p>
+        <p> Red: (90, 4) </p>
         <img src="media/melons.png" />
         <p> <code> onion_church.tif </code> </p>
-        <p> Green: (82, 56) \n
-            Red: (90, 66) </p>
+        <p> Green: (82, 56) </p>
+        <p> Red: (90, 66) </p>
         <img src="media/onion_church.png" />
         <p> <code> sculpture.tif </code> </p>
-        <p> Green: (94, -30) \n
-            Red: (210, -78) </p>
+        <p> Green: (94, -30) </p>
+        <p> Red: (210, -78) </p>
         <img src="media/sculpture.png" />
         <p> <code> self_portrait.tif </code> </p>
-        <p> Green: (170, 80) \n
-            Red: (210, 114) </p>
+        <p> Green: (170, 80) </p>
+        <p> Red: (210, 114) </p>
         <img src="media/self_portrait.png" />
         <p> <code> three_generations.tif </code> </p>
-        <p> Green: (130, 42) \n
-            Red: (202, 30) </p>
+        <p> Green: (130, 42) </p>
+        <p> Red: (202, 30) </p>
         <img src="media/three_generations.png" />
         <p> <code> train.tif </code> </p>
-        <p> Green: (114, 18) \n
-            Red: (178, 94) </p>
+        <p> Green: (114, 18) </p>
+        <p> Red: (178, 94) </p>
         <img src="media/train.png" />
     </div>
 </body>
