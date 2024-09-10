@@ -8,6 +8,31 @@
             margin: 20px;
         }
     </style>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        td {
+            text-align: center;
+            padding: 10px;
+        }
+        img {
+            width: 100%; /* Adjust the width as necessary */
+            height: auto;
+        }
+        caption {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .caption {
+            font-weight: bold;
+            font-size: 1em;
+            padding-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar clear nav-top">
@@ -29,33 +54,18 @@
         <tr>
             <td>
                 <img src="media/cathedral.png" alt="Image 1 description">
-                <div class="caption">Caption for Image 1</div>
+                <div class="caption"><code> cathedral.jpg </code> - Green: (5, 2), Red: (12, 3)</div>
             </td>
             <td>
                 <img src="media/monastery.png" alt="Image 2 description">
-                <div class="caption">Caption for Image 2</div>
+                <div class="caption"><code> monastery.jpg </code> - Green: (-3, 2), Red: (3, 2)</div>
             </td>
             <td>
                 <img src="media/tobolsk.png" alt="Image 3 description">
-                <div class="caption">Caption for Image 3</div>
+                <div class="caption"><code> tobolsk.jpg </code> - Green: (3, 3), Red: (6, 3)</div>
             </td>
         </tr>
     </table>
-    
-    <div class="gallery">
-        <p> <code> cathedral.jpg </code> </p>
-        <p> Green: (5, 2) </p>
-        <p> Red: (12, 3) </p>
-        <img src="media/cathedral.png" />
-        <p> <code> monastery.jpg </code> </p>
-        <p> Green: (-3, 2) </p>
-        <p> Red: (3, 2) </p>
-        <img src="media/monastery.png" />
-        <p> <code> tobolsk.jpg </code> </p>
-        <p> Green: (3, 3) </p>
-        <p> Red: (6, 3) </p>
-        <img src="media/tobolsk.png" />
-    </div>
 
     <h2>Multiscale Alignment (Image Pyramid)</h2>
     <h3> Approach </h3>
