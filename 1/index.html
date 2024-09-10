@@ -70,7 +70,7 @@
     <h2>Multiscale Alignment (Image Pyramid)</h2>
     <h3> Approach </h3>
     <p>
-        In order to process larger <code> .tif </code> images, I used image pyramids. I processed every image using the same method as I did in the single-scale alignment. Then, I rescaled the image by <code> 0.5 </code>, halving its size for <code> 3 </code> iterations. This means that the pyramid has <code> 3 </code> levels of <code> 0.5 </code>, <code> 0.25 </code> and <code> 0.125 </code> of the original image. I aligned the images starting from the coarsest level (level <code> 3 </code>, <code> 0.125 </code> of the original image), adding each level's displacement multiplied by <code> 2^level </code> to <code> d = (dx, dy) </code>, initialized to <code> (0, 0) </code>. Finally, I used <code> d </code> as the displacement to align the original <code> .tif </code> image and returned it.
+        In order to process larger <code> .tif </code> images, I used image pyramids. I processed every image using the same method as I did in the single-scale alignment. Then, I rescaled the image by <code> 0.5 </code>, halving its size for <code> 2 </code> iterations. This means that the pyramid has <code> 2 </code> levels of <code> 0.5 </code> and <code> 0.25 </code> of the original image. I aligned the images starting from the coarsest level (level <code> 2 </code>, <code> 0.25 </code> of the original image), adding each level's displacement multiplied by <code> 2^level </code> to <code> d = (dx, dy) </code>, initialized to <code> (0, 0) </code>. Finally, I used <code> d </code> as the displacement to align the original <code> .tif </code> image and returned it.
     </p>
     <h3> Aligned Images </h3>
     <table border="1">
