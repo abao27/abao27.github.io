@@ -53,16 +53,16 @@
     <table border="1">
         <tr>
             <td>
-                <img src="media/cathedral.png" alt="Image 1 description">
-                <div class="caption"><code> cathedral.jpg </code> - Green: (5, 2), Red: (12, 3)</div>
+                <img src="media/cathedral.png" alt="cathedral.jpg">
+                <div class="caption"><code> cathedral.jpg </code> <br> Green: (5, 2), Red: (12, 3)</div>
             </td>
             <td>
-                <img src="media/monastery.png" alt="Image 2 description">
-                <div class="caption"><code> monastery.jpg </code> - Green: (-3, 2), Red: (3, 2)</div>
+                <img src="media/monastery.png" alt="monastery.jpg">
+                <div class="caption"><code> monastery.jpg </code> <br> Green: (-3, 2), Red: (3, 2)</div>
             </td>
             <td>
-                <img src="media/tobolsk.png" alt="Image 3 description">
-                <div class="caption"><code> tobolsk.jpg </code> - Green: (3, 3), Red: (6, 3)</div>
+                <img src="media/tobolsk.png" alt="tobolsk.jpg">
+                <div class="caption"><code> tobolsk.jpg </code> <br> Green: (3, 3), Red: (6, 3)</div>
             </td>
         </tr>
     </table>
@@ -73,19 +73,24 @@
         In order to process larger <code> .tif </code> images, I used image pyramids. I processed every image using the same method as I did in the single-scale alignment. Then, I rescaled the image by <code> 0.5 </code>, halving its size for <code> 3 </code> iterations. This means that the pyramid has <code> 3 </code> levels of <code> 0.5 </code>, <code> 0.25 </code> and <code> 0.125 </code> of the original image. I aligned the images starting from the coarsest level (level <code> 3 </code>, <code> 0.125 </code> of the original image), adding each level's displacement multiplied by <code> 2^level </code> to <code> d = (dx, dy) </code>, initialized to <code> (0, 0) </code>. Finally, I used <code> d </code> as the displacement to align the original <code> .tif </code> image and returned it.
     </p>
     <h3> Aligned Images </h3>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media/cathedral.png" alt="church.tif">
+                <div class="caption"><code> church.tif </code> <br> Green: (48, 8), Red: (86, -8)</div>
+            </td>
+            <td>
+                <img src="media/emir.png" alt="emir.tif">
+                <div class="caption"><code> emir.tif </code> <br> Green: (78, 44), Red: (58, 40)</div>
+            </td>
+            <td>
+                <img src="media/harvesters.png" alt="harvesters.tif">
+                <div class="caption"><code> harvesters.tif </code> <br> Green: (90, 34), Red: (90, 14)</div>
+            </td>
+        </tr>
+    </table>
+    
     <div class="gallery">
-        <p> <code> church.tif </code> </p>
-        <p> Green: (48, 8) </p>
-        <p> Red: (86, -8) </p>
-        <img src="media/church.png" />
-        <p> <code> emir.tif </code> </p>
-        <p> Green: (78, 44) </p>
-        <p> Red: (58, 40) </p>
-        <img src="media/emir.png" />
-        <p> <code> harvesters.tif </code> </p>
-        <p> Green: (90, 34) </p>
-        <p> Red: (90, 14) </p>
-        <img src="media/harvesters.png" />
         <p> <code> icon.tif </code> </p>
         <p> Green: (70, 34) </p>
         <p> Red: (90, 46) </p>
