@@ -42,12 +42,12 @@
     </div>
 
     <h2> Background </h2>
-    <p> Background text </p>
+    <p> This project uses filters and frequencies manipulate images in various ways. For example, we can blur an image, create a hybrid image between two images, and blend two images together. Some concepts applied include finite difference operators, derivative of Gaussian filters, Gaussian stacks and Laplacian stacks. Scroll down to read more! </p>
 
     <h2>1.1 Finite Difference Operator</h2>
     <h3> Approach </h3>
     <p>
-        Calculation
+        I set <code>Dx</code> and <code>Dy</code> to be 2D <code>numpy</code> arrays and convolved each of them with the 0th channel of the cameraman image using <code>scipy.signal.convolve2d</code>, setting <code>mode=same</code>. Afterwards, I took the gradient magnitude of the two images post-convolution using the distance formula <code>sqrt(image1 ^ 2 + image2 ^ 2)</code>. Finally, I binarized the gradient magnitude image, setting the threshold to 75.
     </p>
     <h3> 1.1 Images </h3>
     <table border="1">
@@ -75,10 +75,19 @@
 
     <h2> 1.2 Derivative of Gaussian (DoG) Filter </h2>
     <h3> Approach </h3>
+    <p>
+        I used <code>get_gaussian_kernel_2d</code> from discussion and set <code>kernelSize=10</code> and <code>sigma=1.5</code> to create my Gaussian. 
+        
+        For the first part, I blurred the original image by convolving it with the Gaussian. Next, I convolved the blurred image with <code>Dx</code> and <code>Dy</code>, before finding its gradient magnitude and binarizing it.
+        
+        For the second part, I convolved my Gaussian with <code>Dx</code> and <code>Dy</code> before convolving the original image with the derivative of Gaussian. I then found the gradient magnitude and binarized, as usual.
+    </p>
     
     <h3> Observations </h3>
     <p>
-        Observations
+        Using this approach, we can see that the binarized edges are more defined (thicker and rounder). There is also less noise, especially near the bottom of the image. However, we also lose some details of the camera.
+
+        We can also see that our two approaches yield the same output image, as expected.
     </p>
     <h3> 1.2 Images </h3>
     <table border="1">
@@ -126,6 +135,14 @@
 
     <h2> 2.1 Image "Sharpening" </h2>
     <h3> Approach </h3>
+    <p>
+        I used the formulas from lecture to derive image sharpening. Let <code>B</code> be the blurred image (convolving the original image with <code>Gaussian(10, 1.5)</code>), <code>img</code> be the image and <code>alpha</code> be the sharpening factor. Then, our sharpened image is <code>img + alpha * (img - B)</code>. I used <code>alpha=1</code> for all images below.
+    </p>
+
+    <h3> Observations of Sharpening, Blurring and Sharpening Again </h3>
+    <p>
+        I chose to blur and sharpen the already sharp image of the dam.
+    </p>
     
     <h3> 2.1 Images </h3>
     <table border="1">
@@ -153,6 +170,9 @@
 
     <h2> 2.2 Hybrid Images </h2>
     <h3> Approach </h3>
+    <p>
+        First, I used the skeleton code to align my images. I used <code>Gaussian(60, 10)</code> as the kernel for my high frequency image and <code>Gaussian(6, 1)</code> for my low frequency image. I blurred the images with their respective Gaussians. I averaged the blurred low frequency image and the difference between the high frequncy image and its blurred version to get a hybrid photo. I then converted it to grayscale using the <code>rgb2gray</code> function from discussion.
+    </p>
     
     <h3> 2.2 Images </h3>
     <table border="1">
@@ -201,6 +221,9 @@
     </table>
 
     <h4> Failed Hybrid </h4>
+    <p>
+        A hybrid I tried was combining the Kingaroo with a boba drink - however, that unfortunately failed. It was difficult to align it, and even more difficult to find fitting Gaussian parameters to make a good hyrbid considering the shapes of the two figures in question.
+    </p>
     <table>
         <tr>
             <td>
@@ -218,8 +241,43 @@
         </tr>
     </table>
 
+    <h4> Fourier Analysis of Kangaroos </h4>
+    <p>
+        I chose to display the 2D Fourier transform of the Kingaroo and Uniqloroo Hybrid.
+    </p>
+    <table>
+        <tr>
+            <td>
+                <img src="media/Kingaroo_FFT.jpg" width="300" alt="Kingaroo_FFT.jpg">
+                <div class="caption"> Low Frequency Image FFT </div>
+            </td>
+            <td>
+                <img src="media/Uniqloroo_FFT.jpg" width="300" alt="Uniqloroo_FFT.jpg">
+                <div class="caption"> High Frequency Image FFT </div>
+            </td>
+            <td>
+                <img src="media/Hybrid_FFT.jpg" width="300" alt="Hybrid_FFT.jpg">
+                <div class="caption"> Hybrid Image FFT </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media/Filtered_Low_FFT.jpg" width="300" alt="Filtered_Low_FFT.jpg">
+                <div class="caption"> Filtered Low Frequency Image FFT </div>
+            </td>
+            <td>
+                <img src="media/Filtered_High_FFT.jpg" width="300" alt="Filtered_High_FFT.jpg">
+                <div class="caption"> Filtered High Frequency Image FFT </div>
+            </td>
+        </tr>
+    </table>
+    
+
     <h2> 2.3 Gaussian and Laplacian Stacks </h2>
     <h3> Approach </h3>
+    <p>
+        I used the lecture slides as inspiration for creating my Gaussian and Laplacian stacks. For each level of the Gaussian stack, I blurred the previous level by <code>Gaussian(36, 6)</code>. To make my Laplacian stack, I subtracted the value in index <code>i-1</code> from the value in index <code>i</code> of my Gaussian stack, then added the highest level of my Gaussian stack to the end.
+    </p>
     
     <h3> 2.3 Images </h3>
     <table border="1">
@@ -257,6 +315,9 @@
 
     <h2> 2.4 Multiresolution Blending </h2>
     <h3> Approach </h3>
+    <p>
+        To build my Laplacian stack for a blended image, I used the formula <code>A[i] * mask[i] + B[i] * (1 - mask[i])</code> from the lecture slides as inspiration, where <code>A</code> and <code>B</code> correspond to the Laplacian stacks of the two images. To complete the blend, I summed the values in the stacks, which returned the desired image.
+    </p>
 
     <h3> 2.4 Images </h3>
     <table border="1">
