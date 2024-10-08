@@ -42,12 +42,16 @@
     </div>
 
     <h2> Background </h2>
-    <p> morph hehe </p>
+    <p> 
+        A morph is a simultaneous warp of the image shape and a cross-dissolve of the image colors. The warp is controlled by defining a correspondence between the two pictures, for example by mapping eyes to eyes, mouth to mouth, chin to chin, ears to ears, etc.
+        
+        In this project, we explored morphing by producing a "morph" animation from one face into another, computing the mean of a population of faces and extrapolating from a population mean to create a caricature of yourself.
+    </p>
 
     <h2>1. Defining Correspondencies</h2>
     <h3> Approach </h3>
     <p>
-        yup.
+        First, I rotated and cropped the images to make them match as much as possible for better visual results in later parts. I used the <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">labeling tool</a> on the course website to select the correspondences between the two images. I used <code>scipy.spatial.Delaunay</code> to find the Delaunay triangulations of the two faces and plotted them using <code>plt.triplot(pts[:, 0], pts[:, 1], tri.simplices)</code>, where <code>tri</code> is the triangulation.
     </p>
     <h3> Facial Keypoints and Triangulation </h3>
     <table border="1">
