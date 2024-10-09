@@ -157,10 +157,11 @@
     <h2>5. Caricatures: Extrapolating from the Mean</h2>
     <h3> Approach </h3>
     <p>
-        I used the formula <code>alpha * mean_image + (1 - alpha) * self_image</code> to extrapolate from the population mean to create a caricature of myself.
+        I used the formula <code>alpha * mean_image + (1 - alpha) * self_image</code> to extrapolate from the population mean to create a caricature of myself. I used <code>alpha = 2</code> for this part. Note that this formula is analogous to the warp weighing formula involving <code>warp_frac</code> in my <code>morph</code> function. Thus, I called <code>morph</code> with <code>warp_frac=2</code> and <code>dissolve_frac=0</code> to generate my caricature.
     </p>
     <h3> My Caricature </h3>
     <img src="media/caricature.jpg" style="width:300px;height:auto;" alt="caricature.jpg">
+    <div class="caption"> Alan Caricature with <code>alpha = 2</code> </div>
 
     <h2>6. Bells and Whistles: Ethnicity and Gender Morphing</h2>
     <h3> Approach </h3>
