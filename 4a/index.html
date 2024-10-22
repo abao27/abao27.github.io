@@ -98,40 +98,41 @@
     <h2> Recover Homographies </h2>
     <h3> Approach </h3>
     <p>
-        First, I wrote an affine transformation function, <code>affine_transform</code> using the affine transformation formula from the class lecture slides, <code>[x' y' 1] = [x y 1] * A^T</code> (where <code>A</code> is a matrix). Next, I inverse warped the Delaunay triangulations of the midway image and <code>alan.jpg</code> the previous part. This was done by first using a for-loop that iterates through the correlating triangles in the triangulations and finding its affine transform. Next, I used <code>scipy.draw.polygon</code> to find all points within the midway triangle, and applied the inverse warping formula <code>A^-1 * [x' y' 1] = [x y 1]</code> to each point. I rounded each point to the nearest integer, used those points from the source image to set the points in the midway triangle to get the final warped image. I used this approach to warp <code>alan.jpg</code> and <code>jacob.jpg</code> with the midway triangulation. Finally, in order to find the midway image, I cross-dissolved by averaging the images.
+        I implemented the approach from lecture and discussion in my code. Using the input points, <code> im1_pts </code> and <code> im2_pts </code>, I created the arrays below and applied least squares to solve for the homography matrix <code> H </code>.
     </p>
-
+    <img src="media/homographies.jpg" alt="homographies.jpg">
+    
     <h2> Warp the Images </h2>
     <h3> Approach </h3>
     <p>
-        Modifying my code from the previous part, I wrote a <code>morph</code> function that uses <code>warp_frac</code> to control the intermediate shape configuration and <code>dissolve_frac</code> to cross-dissolve. I morphed the faces over 45 times while incrementing the <code>warp_frac</code> and <code>dissolve_frac</code> parameters from <code>0</code> to <code>1</code>. Finally, I took the resulting images and merged them into a GIF using an online GIF creator.
+        First, I set the source points to be the 4 corners of the input image. I calculated the destination by multiplying the source by the homography matrix, <code>H * source</code> and normalized with <code> destination[:2] / destination[2] </code>. Next, I shifted the destination points such that the upper left point is at <code> (0, 0) </code>. I then created a new array based on the shift to be able to fit the output image. Next, I used the same procedure as Project 3 for inverse warping, except I shifted the polygon returned by <code>skimage.draw.polygon</code>. Finally, I displayed the resulting warped image.
     </p>
 
     <h2> Image Rectification </h2>
     <h3> Approach </h3>
     <p>
-        I used the non-smiling/mug faces from the <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a> for this part. I parsed the <code>.pts</code> files with a helper function using <code>np.loadtxt</code> to get the corresponding points of every image. I then averaged all of the corresponding points and found its triangulation to get the average points and triangulation of the population. I used my <code>morph</code> function to morph every face with the average face shape of the population (some examples showed below). I then cross dissolved all of these morphs to create the average face of the population. Finally, I morphed my face into the average face shape of the population, and vice versa. 
+        First, I found 4 source points from the input image that is a rectangle (but doesn't appear as one due to camera perspective). I then used the image dimensions to generate 4 destination points that were in the shape of a rectangle. I found the homography from the source to the destination, and warped the image into a rectangular plane with the homography.
     </p>
     <h3> Example Image Rectifications </h3>
     <table border="1">
         <tr>
             <td>
-                <img src="media/woz1.jpg" style="width:300px;height:auto;" alt="woz1.jpg">
-                <div class="caption"> Woz Left </div>
+                <img src="media/painting.jpg" style="width:300px;height:auto;" alt="painting.jpg">
+                <div class="caption"> Painting </div>
             </td>
             <td>
-                <img src="media/woz2.jpg" style="width:300px;height:auto;" alt="woz2.jpg">
-                <div class="caption"> Woz Right </div>
+                <img src="media/p_rect.jpg" style="width:300px;height:auto;" alt="p_rect.jpg">
+                <div class="caption"> Painting Rectified </div>
             </td>
         </tr>
         <tr>
             <td>
-                <img src="media/woz1.jpg" style="width:300px;height:auto;" alt="woz1.jpg">
-                <div class="caption"> Woz Left </div>
+                <img src="media/hmmb1.jpg" style="width:300px;height:auto;" alt="hmmb1.jpg">
+                <div class="caption"> HMMB </div>
             </td>
             <td>
-                <img src="media/woz2.jpg" style="width:300px;height:auto;" alt="woz2.jpg">
-                <div class="caption"> Woz Right </div>
+                <img src="media/h_rect.jpg" style="width:300px;height:auto;" alt="h_rect.jpg">
+                <div class="caption"> HMMB Rectified </div>
             </td>
         </tr>
     </table>
@@ -139,38 +140,38 @@
     <h2> Blend the images into a mosaic </h2>
     <h3> Approach </h3>
     <p>
-        I used the formula <code>alpha * mean_image + (1 - alpha) * self_image</code> to extrapolate from the population mean to create a caricature of myself. I used <code>alpha = 2</code> for this part. Note that this formula is analogous to the warp weighing formula involving <code>warp_frac</code> in my <code>morph</code> function. Thus, I called <code>morph</code> with <code>warp_frac=2</code> and <code>dissolve_frac=0</code> to generate my caricature.
+        
     </p>
   
     <h3> Example Destination Transform and Mask </h3>
     <table border="1">
         <tr>
             <td>
-                <img src="media/woz1.jpg" style="width:300px;height:auto;" alt="woz1.jpg">
+                <img src="media/e1_dt.jpg" style="width:300px;height:auto;" alt="e1_dt.jpg">
                 <div class="caption"> Enclave Left Destination Transform </div>
             </td>
             <td>
-                <img src="media/woz2.jpg" style="width:300px;height:auto;" alt="woz2.jpg">
+                <img src="media/e2_dt.jpg" style="width:300px;height:auto;" alt="e2_dt.jpg">
                 <div class="caption"> Enclave Right Destination Transform </div>
             </td>
             <td>
-                <img src="media/woz1.jpg" style="width:300px;height:auto;" alt="woz1.jpg">
+                <img src="media/e_mask.jpg" style="width:300px;height:auto;" alt="e_mask.jpg">
                 <div class="caption"> Enclave Mask </div>
             </td>
         </tr>
     </table>
 
     <h3> Mosaics </h3>
-    <img src="media/woz1.jpg" alt="woz1.jpg">
+    <img src="media/w_mosaic.jpg" alt="w_mosaic.jpg">
     <div class="caption"> Woz Mosaic </div>
 
-    <img src="media/woz1.jpg" alt="woz1.jpg">
-    <div class="caption"> Woz Mosaic </div>
+    <img src="media/e_mosaic.jpg" alt="e_mosaic.jpg">
+    <div class="caption"> Enclave Mosaic </div>
 
-    <img src="media/woz1.jpg" alt="woz1.jpg">
-    <div class="caption"> Woz Mosaic </div>
+    <img src="media/h_mosaic.jpg" alt="h_mosaic.jpg">
+    <div class="caption"> HMMB Mosaic </div>
 
-    <img src="media/woz1.jpg" alt="woz1.jpg">
-    <div class="caption"> Woz Mosaic </div>
+    <img src="media/a_mosaic.jpg" alt="a_mosaic.jpg">
+    <div class="caption"> Apartment Mosaic </div>
 </body>
 </html>
