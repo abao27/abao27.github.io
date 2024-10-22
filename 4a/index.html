@@ -140,7 +140,7 @@
     <h2> Blend the images into a mosaic </h2>
     <h3> Approach </h3>
     <p>
-        In this part, I followed the approach from lecture again. First, I warped the right image onto the left. Next, I found the destination transforms of the left image and warped right using <code>scipy.ndimage.distance_transform_edt</code>. Then I applied <code>logical(dtrans1 > dtrans2)</code> from lecture to generate the mask. Finally, I used the blending code from Projet 2 to blend everything together and generate the mosaics.
+        In this part, I followed the approach from lecture again. First, I warped the right image onto the left. Next, I found the destination transforms of the left image and warped right using <code>scipy.ndimage.distance_transform_edt</code>. Then I applied the Python equivalent of <code>logical(dtrans1 > dtrans2)</code> from lecture to generate the mask. Finally, I used the blending code from Project 2 to blend everything together and generate the mosaics.
     </p>
   
     <h3> Example Destination Transform and Mask </h3>
