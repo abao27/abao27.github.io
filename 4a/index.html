@@ -204,7 +204,88 @@
         Next, to restrict the number of interest points, I implemented Adaptive Non-Maximal Suppression (ANMS). I followed the formula <code> ri = min_j |xi -  xj|, s.t. f(xi) < c_robust f(xj), xj in I </code> from the paper, handling infinite radii by replacing them with the largest non-infinite radius. I used <code> n_ip = 50 </code> interest points and <code> c_robust = 0.9 </code>.
     </p>
     <h3> Harris Interest Points v.s. ANMS </h3>
-    
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media4b/woz1_harris.jpg" style="width:400px;height:auto;" alt="woz1_harris.jpg">
+                <div class="caption"> Woz Left Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/woz1_anms.jpg" style="width:400px;height:auto;" alt="woz1_anms.jpg">
+                <div class="caption"> Woz Left ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/woz2_harris.jpg" style="width:400px;height:auto;" alt="woz2_harris.jpg">
+                <div class="caption"> Woz Right Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/woz2_anms.jpg" style="width:400px;height:auto;" alt="woz2_anms.jpg">
+                <div class="caption"> Woz Right ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/enclave1_harris.jpg" style="width:400px;height:auto;" alt="enclave1_harris.jpg">
+                <div class="caption"> Enclave Left Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/enclave1_anms.jpg" style="width:400px;height:auto;" alt="enclave1_anms.jpg">
+                <div class="caption"> Enclave Left ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/enclave2_harris.jpg" style="width:400px;height:auto;" alt="enclave2_harris.jpg">
+                <div class="caption"> Enclave Right Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/enclave2_anms.jpg" style="width:400px;height:auto;" alt="enclave2_anms.jpg">
+                <div class="caption"> Enclave Right ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/apt1_harris.jpg" style="width:400px;height:auto;" alt="apt1_harris.jpg">
+                <div class="caption"> Apartment Left Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/apt1_anms.jpg" style="width:400px;height:auto;" alt="apt1_anms.jpg">
+                <div class="caption"> Apartment Left ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/apt2_harris.jpg" style="width:400px;height:auto;" alt="apt2_harris.jpg">
+                <div class="caption"> Apartment Right Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/apt2_anms.jpg" style="width:400px;height:auto;" alt="apt2_anms.jpg">
+                <div class="caption"> Apartment Right ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/hmmb1_harris.jpg" style="width:400px;height:auto;" alt="hmmb1_harris.jpg">
+                <div class="caption"> HMMB Left Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/hmmb1_anms.jpg" style="width:400px;height:auto;" alt="hmmb1_anms.jpg">
+                <div class="caption"> HMMB Left ANMS </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/hmmb2_harris.jpg" style="width:400px;height:auto;" alt="hmmb2_harris.jpg">
+                <div class="caption"> HMMB Right Harris Interest Points </div>
+            </td>
+            <td>
+                <img src="media4b/hmmb2_anms.jpg" style="width:400px;height:auto;" alt="hmmb2_anms.jpg">
+                <div class="caption"> HMMB Right ANMS </div>
+            </td>
+        </tr>
+    </table>
 
     <h2> 2. Extracting Feature Descriptors </h2>
     <h3> Approach </h3>
@@ -213,6 +294,7 @@
     </p>
 
     <h3> Feature Descriptors for Woz </h3>
+    <img src="media4b/woz_descr.jpg" style="width:400px;height:auto;" alt="woz_descr.jpg">
     
 
     <h2> 3. Matching Features </h2>
@@ -222,7 +304,28 @@
     </p>
 
     <h3> Examples of Matched Features </h3>
-    
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media4b/woz_match.jpg" style="width:400px;height:auto;" alt="woz_match.jpg">
+                <div class="caption"> Woz Matches </div>
+            </td>
+            <td>
+                <img src="media4b/enclave_match.jpg" style="width:400px;height:auto;" alt="enclave_match.jpg">
+                <div class="caption"> Enclave Matches </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/apt_match.jpg" style="width:400px;height:auto;" alt="apt_match.jpg">
+                <div class="caption"> Apartment Matches </div>
+            </td>
+            <td>
+                <img src="media4b/hmmb_match.jpg" style="width:400px;height:auto;" alt="hmmb_match.jpg">
+                <div class="caption"> HMMB Matches </div>
+            </td>
+        </tr>
+    </table>
 
     <h2> 4. RANSAC </h2>
     <h3> Approach </h3>
@@ -231,7 +334,28 @@
     </p>
 
     <h3> Matched Features After RANSAC </h3>
-    
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media4b/woz_ransac.jpg" style="width:400px;height:auto;" alt="woz_ransac.jpg">
+                <div class="caption"> Woz RANSAC </div>
+            </td>
+            <td>
+                <img src="media4b/enclave_ransac.jpg" style="width:400px;height:auto;" alt="enclave_ransac.jpg">
+                <div class="caption"> Enclave RANSAC </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media4b/apt_ransac.jpg" style="width:400px;height:auto;" alt="apt_ransac.jpg">
+                <div class="caption"> Apartment RANSAC </div>
+            </td>
+            <td>
+                <img src="media4b/hmmb_ransac.jpg" style="width:400px;height:auto;" alt="hmmb_ransac.jpg">
+                <div class="caption"> HMMB RANSAC </div>
+            </td>
+        </tr>
+    </table>
 
     <h2> 5. Mosaicing </h2>
     <h3> Approach </h3>
@@ -247,38 +371,38 @@
                 <div class="caption"> Manual </div>
             </td>
             <td>
-                <img src="media/w_mosaic.jpg" style="width:400px;height:auto;" alt="w_mosaic.jpg">
+                <img src="media4b/woz_astitch.jpg" style="width:400px;height:auto;" alt="woz_astitch.jpg">
+                <div class="caption"> Autostitched </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media/e_mosaic.jpg" style="width:400px;height:auto;" alt="e_mosaic.jpg">
                 <div class="caption"> Manual </div>
             </td>
+            <td>
+                <img src="media4b/enclave_astitch.jpg" style="width:400px;height:auto;" alt="enclave_astitch.jpg">
+                <div class="caption"> Autostitched </div>
+            </td>
         </tr>
         <tr>
             <td>
-                <img src="media/e_mosaic.jpg" style="width:400px;height:auto;" alt="e_mosaic.jpg">
-                <div class="caption"> Autostitched </div>
+                <img src="media/a_mosaic.jpg" style="width:400px;height:auto;" alt="a_mosaic.jpg">
+                <div class="caption"> Manual </div>
             </td>
             <td>
-                <img src="media/e_mosaic.jpg" style="width:400px;height:auto;" alt="e_mosaic.jpg">
+                <img src="media4b/apt_astitch.jpg" style="width:400px;height:auto;" alt="apt_astitch.jpg">
                 <div class="caption"> Autostitched </div>
             </td>
         </tr>
         <tr>
             <td>
                 <img src="media/h_mosaic.jpg" style="width:400px;height:auto;" alt="h_mosaic.jpg">
-                <div class="caption"> HMMB Mosaic </div>
+                <div class="caption"> Manual </div>
             </td>
             <td>
-                <img src="media/h_mosaic.jpg" style="width:400px;height:auto;" alt="h_mosaic.jpg">
-                <div class="caption"> HMMB Mosaic </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media/a_mosaic.jpg" style="width:400px;height:auto;" alt="a_mosaic.jpg">
-                <div class="caption"> Apartment Mosaic </div>
-            </td>
-            <td>
-                <img src="media/a_mosaic.jpg" style="width:400px;height:auto;" alt="a_mosaic.jpg">
-                <div class="caption"> Apartment Mosaic </div>
+                <img src="media4b/hmmb_astitch.jpg" style="width:400px;height:auto;" alt="hmmb_astitch.jpg">
+                <div class="caption"> Autostitched </div>
             </td>
         </tr>
     </table>
