@@ -164,25 +164,44 @@
     </table>
 
     <h3> Mosaics </h3>
-    <img src="media/w_mosaic.jpg" style="width:600px;height:auto;" alt="w_mosaic.jpg">
-    <div class="caption"> Woz Mosaic </div>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media/w_mosaic.jpg" style="width:400px;height:auto;" alt="w_mosaic.jpg">
+                <div class="caption"> Woz Mosaic </div>
+            </td>
+            <td>
+                <img src="media/e_mosaic.jpg" style="width:400px;height:auto;" alt="e_mosaic.jpg">
+                <div class="caption"> Enclave Mosaic </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="media/h_mosaic.jpg" style="width:400px;height:auto;" alt="h_mosaic.jpg">
+                <div class="caption"> HMMB Mosaic </div>
+            </td>
+            <td>
+                <img src="media/a_mosaic.jpg" style="width:400px;height:auto;" alt="a_mosaic.jpg">
+                <div class="caption"> Apartment Mosaic </div>
+            </td>
+        </tr>
+    </table>
 
-    <img src="media/e_mosaic.jpg" style="width:600px;height:auto;" alt="e_mosaic.jpg">
-    <div class="caption"> Enclave Mosaic </div>
-
-    <img src="media/h_mosaic.jpg" style="width:600px;height:auto;" alt="h_mosaic.jpg">
-    <div class="caption"> HMMB Mosaic </div>
-
-    <img src="media/a_mosaic.jpg" style="width:600px;height:auto;" alt="a_mosaic.jpg">
-    <div class="caption"> Apartment Mosaic </div>
 
 
     <h1> Project 4B: Feature Matching for Autostitching </h1>
 
+    <h2> Background </h2>
+    <p>
+        In Project 4A, we worked with stitching with manually-selected points. In this part, we will be automating the stitching process. Points are selected with Harris Interest Point Detector and ANMS before getting matched. Then RANSAC is used to increase match accuracies. Finally, we have a set of points and a homography matrix that we can use to warp and mosaic.
+    </p>
+    
     <h2> 1. Detecting Corner Features </h2>
     <h3> Approach </h3>
     <p>
-        ...
+        In order to find the interest points for each image, I first converted to grayscale before using the Harris Interest Point Detector code from the course website.
+
+        Next, to restrict the number of interest points, I implemented Adaptive Non-Maximal Suppression (ANMS). I followed the formula <code> ri = min_j |xi -  xj|, s.t. f(xi) < c_robust f(xj), xj in I </code> from the paper, handling infinite radii by replacing them with the largest non-infinite radius. I used <code> n_ip = 50 </code> interest points and <code> c_robust = 0.9 </code>.
     </p>
     <h3> Harris Interest Points v.s. ANMS </h3>
     
@@ -190,7 +209,7 @@
     <h2> 2. Extracting Feature Descriptors </h2>
     <h3> Approach </h3>
     <p>
-        ...
+        First, I applied my Gaussian blur function from Project 2 to blur the grayscale version of each image. Next, following the paper, I sampled each <code> 40x40 </code> square around every interest point, resized to an <code> 8x8 </code> patch, and normalized. Finally, I stored a flattened version of each patch in a <code> (n_ip, 64) </code> array.
     </p>
 
     <h3> Feature Descriptors for Woz </h3>
@@ -199,7 +218,7 @@
     <h2> 3. Matching Features </h2>
     <h3> Approach </h3>
     <p>
-        ...
+        To match the features between two images, I once again followed the paper. First, I set an image to be the reference image. I then found the 1- and 2-NNs for the reference neighbors by calculating the distances between each feature between the reference and second image. Finally, I filtered through all of the points using Lowe's threshold formula <code> 1-NN / 2-NN < threshold </code> and returned an array of matching indices. I used a threshold of <code> 0.8 </code> in this part.
     </p>
 
     <h3> Examples of Matched Features </h3>
@@ -208,7 +227,7 @@
     <h2> 4. RANSAC </h2>
     <h3> Approach </h3>
     <p>
-        ...
+        In the previous part, it can be observed that some points are matched incorrectly - thus, we use RANSAC to reduce inaccuracies. For this part, I implemented 4-point RANSAC by exactly following the lecture slides. To calculate homographies, I used <code> computeH </code> from Project 4A. I had to slightly modify how I did operations with the homography matrix due to array shapes and <code> x </code> and <code> y </code> coordinates flipping. My <code> RANSAC </code> function outputted the largest set of inliers and its homography matrix, as outlined in the paper.
     </p>
 
     <h3> Matched Features After RANSAC </h3>
@@ -217,7 +236,7 @@
     <h2> 5. Mosaicing </h2>
     <h3> Approach </h3>
     <p>
-        ...
+        Based on the points and homographies from RANSAC, I warped the right image to the left image using a slightly modified <code> warpImage </code> method (to account for different input shapes). The rest of the mosaicing process is identical to Project 4A.
     </p>
 
     <h3> Autostitched Mosaics </h3>
