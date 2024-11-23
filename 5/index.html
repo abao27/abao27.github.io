@@ -101,6 +101,104 @@
             </td>
         </tr>
     </table>
+
+    <h2> 1.4 Iterative Denoising </h2>
+    <h3> Approach </h3>
+    <p>
+        To iteratively denoise, I applied equations 6 and 7 of the DDPM paper in the project spec, with strided timesteps from <code>990</code> to <code>0</code>. The results are displayed below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.4iter690-390.jpg" style="width:300px;height:auto;" alt="part1.4iter690-390.jpg">
+                <img src="media5a/part1.4iter240-clean.jpg" style="width:300px;height:auto;" alt="part1.4iter240-clean.jpg">
+                <div class="caption"> Noisy Campanile at <code>t=690</code> to <code>0</code> </div>
+            </td>
+            <td>
+                <img src="media5a/part1.4onestepandgauss.jpg" style="width:300px;height:auto;" alt="part1.4onestepandgauss.jpg">
+                <div class="caption"> Single Denoising Step (Top) and Gaussian Blurring (Bottom) </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.5 Diffusion Model Sampling </h2>
+    <h3> Approach </h3>
+    <p>
+        To generate images from scratch, I generated random noise with <code>torch.randn</code> and applied my <code>iterative_denoise</code> function on it. The 5 sampled images are shown below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.5p1.jpg" style="width:300px;height:auto;" alt="part1.5p1.jpg">
+            </td>
+            <td>
+                <img src="media5a/part1.5p2.jpg" style="width:300px;height:auto;" alt="part1.5p2.jpg">
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.6 Classifier-Free Guidance (CFG) </h2>
+    <h3> Approach </h3>
+    <p>
+        To implement <code>iterative_denoise_cfg</code>, I edited my <code>iterative_denoise</code> function such that <code>noise_est = uncond_noise_est + scale * (noise_est - uncond_noise_est)</code>. Then, using the same procedure as 1.5, I generated random noise with <code>torch.randn</code> and applied my <code>iterative_denoise_cfg</code> function on it. The 5 sampled images are shown below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.6p1.jpg" style="width:300px;height:auto;" alt="part1.6p1.jpg">
+            </td>
+            <td>
+                <img src="media5a/part1.6p2.jpg" style="width:300px;height:auto;" alt="part1.6p2.jpg">
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.7 Image-to-image Translation </h2>
+    <h3> Approach </h3>
+    <p>
+        In this part, I applied the forward process to the test image, Kingaroo and Uniqloroo and applied my <code>iterative_denoise_cfg</code> function on it at the noise levels <code>[1, 3, 5, 7, 10, 20]</code>. The 5 sampled images are shown below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.7test1.jpg" style="width:300px;height:auto;" alt="part1.7test1.jpg">
+                <img src="media5a/part1.7test2.jpg" style="width:300px;height:auto;" alt="part1.7test2.jpg">
+                <div class="caption"> Test Image </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7kingaroo1.jpg" style="width:300px;height:auto;" alt="part1.7kingaroo1.jpg">
+                <img src="media5a/part1.7kingaroo2.jpg" style="width:300px;height:auto;" alt="part1.7kingaroo2.jpg">
+                <div class="caption"> Kingaroo </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7uniqloroo1.jpg" style="width:300px;height:auto;" alt="part1.7uniqloroo1.jpg">
+                <img src="media5a/part1.7uniqloroo2.jpg" style="width:300px;height:auto;" alt="part1.7uniqloroo2.jpg">
+                <div class="caption"> Uniqloroo </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.7.1 Editing Hand-Drawn and Web Images </h2>
+    <h3> Approach </h3>
+    <p>
+        In this part, I found an image online and drew two. Then, I passed the images through the starter code. The results are shown below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.7.1online.jpg" style="width:300px;height:auto;" alt="part1.7.1online.jpg">
+                <div class="caption"> Online Image </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7.1handraw1edit.jpg" style="width:300px;height:auto;" alt="part1.7.1handraw1edit.jpg">
+                <div class="caption"> Hand Drawn 1 </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7.1handraw2edit.jpg" style="width:300px;height:auto;" alt="part1.7.1handraw2edit.jpg">
+                <div class="caption"> Hand Drawn 2 </div>
+            </td>
+        </tr>
+    </table>
     
     <h3> Example Images </h3>
     <table border="1">
