@@ -195,6 +195,94 @@
             </td>
         </tr>
     </table>
+
+    <h2> 1.7.2 Inpainting </h2>
+    <h3> Approach </h3>
+    <p>
+        In this part, I implemented the <code>inpaint</code> function by editing my <code>iterative_denoise_cfg</code> code to apply equation 5 on the project spec to account for the mask. The results are shown below (left is image and mask, right is inpainted):
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.7.2test.jpg" style="width:300px;height:auto;" alt="part1.7.2test.jpg">
+                <img src="media5a/part1.7.2testedit.jpg" style="width:300px;height:auto;" alt="part1.7.2testedit.jpg">
+                <div class="caption"> Test Image </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7.2kingaroo.jpg" style="width:300px;height:auto;" alt="part1.7.2kingaroo.jpg">
+                <img src="media5a/part1.7.2kingarooedit.jpg" style="width:300px;height:auto;" alt="part1.7.2kingarooedit.jpg">
+                <div class="caption"> Kingaroo </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7.2uniqloroo.jpg" style="width:300px;height:auto;" alt="part1.7.2uniqloroo.jpg">
+                <img src="media5a/part1.7.2uniqlorooedit.jpg" style="width:300px;height:auto;" alt="part1.7.2uniqlorooedit.jpg">
+                <div class="caption"> Uniqloroo </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.7.3 Text-Conditional Image-to-image Translation </h2>
+    <h3> Approach </h3>
+    <p>
+        In this part, I did the same as 1.7 but with the prompt <code>"a rocket ship"</code>. The results are below.
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.7.3test1.jpg" style="width:300px;height:auto;" alt="part1.7.3test1.jpg">
+                <img src="media5a/part1.7.3test2.jpg" style="width:300px;height:auto;" alt="part1.7.3test2.jpg">
+                <div class="caption"> Test Image </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7.3kingaroo1.jpg" style="width:300px;height:auto;" alt="part1.7.3kingaroo1.jpg">
+                <img src="media5a/part1.7.3kingaroo2.jpg" style="width:300px;height:auto;" alt="part1.7.3kingaroo2.jpg">
+                <div class="caption"> Kingaroo </div>
+            </td>
+            <td>
+                <img src="media5a/part1.7.3uniqloroo1.jpg" style="width:300px;height:auto;" alt="part1.7.3uniqloroo1.jpg">
+                <img src="media5a/part1.7.3uniqloroo2.jpg" style="width:300px;height:auto;" alt="part1.7.3uniqloroo2.jpg">
+                <div class="caption"> Uniqloroo </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.8 Visual Anagrams </h2>
+    <h3> Approach </h3>
+    <p>
+        In this part, I implemented <code>make_flip_illusion</code> editing my <code>iterative_denoise_cfg</code> function to apply the equations on the project spec (to account for UNets and flipping). I then ran it on three different pairs of prompts, shown below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/part1.8mancampfire.jpg" style="width:300px;height:auto;" alt="part1.8mancampfire.jpg">
+            </td>
+            <td>
+                <img src="media5a/part1.8manhatpencil.jpg" style="width:300px;height:auto;" alt="part1.8manhatpencil.jpg">
+            </td>
+            <td>
+                <img src="media5a/part1.8manrocket.jpg" style="width:300px;height:auto;" alt="part1.8manrocket.jpg">
+            </td>
+        </tr>
+    </table>
+
+    <h2> 1.9 Hybrid Images </h2>
+    <h3> Approach </h3>
+    <p>
+        In this part, I implemented <code>make_hybrids</code> editing my <code>iterative_denoise_cfg</code> function to apply the equations on the project spec (to account for UNets and filtering). I then ran it on three different pairs of prompts, shown below:
+    </p>
+    <table border="1">
+        <tr>
+            <td>
+                <img src="media5a/1.9skullwaterfall.jpg" style="width:300px;height:auto;" alt="1.9skullwaterfall.jpg">
+            </td>
+            <td>
+                <img src="media5a/1.9pencilrocket.jpg" style="width:300px;height:auto;" alt="1.9pencilrocket.jpg">
+            </td>
+            <td>
+                <img src="media5a/1.9hippiebaristavillage.jpg" style="width:300px;height:auto;" alt="1.9hippiebaristavillage.jpg">
+            </td>
+        </tr>
+    </table>
     
     <h3> Example Images </h3>
     <table border="1">
