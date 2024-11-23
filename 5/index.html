@@ -45,7 +45,7 @@
 
     <h2> Background </h2>
     <p> 
-        idk
+        In Part A, we play with diffusion models, implement diffusion sampling loops, and use them for other tasks such as inpainting and creating optical illusions. We use the DeepFloydIF diffusion model to help run the code.
     </p>
 
     <h2> 0. Sampling from the Model </h2>
@@ -283,144 +283,88 @@
             </td>
         </tr>
     </table>
-    
-    <h3> Example Images </h3>
-    <table border="1">
-        <tr>
-            <td>
-                <img src="media/woz1.jpg" style="width:300px;height:auto;" alt="woz1.jpg">
-                <div class="caption"> Woz Left </div>
-            </td>
-            <td>
-                <img src="media/woz2.jpg" style="width:300px;height:auto;" alt="woz2.jpg">
-                <div class="caption"> Woz Right </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media/enclave1.jpg" style="width:300px;height:auto;" alt="enclave1.jpg">
-                <div class="caption"> Enclave Left </div>
-            </td>
-            <td>
-                <img src="media/enclave2.jpg" style="width:300px;height:auto;" alt="enclave2.jpg">
-                <div class="caption"> Enclave Right </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media/hmmb1.jpg" style="width:300px;height:auto;" alt="hmmb1.jpg">
-                <div class="caption"> Hearst Memorial Mining Building (HMMB) Left </div>
-            </td>
-            <td>
-                <img src="media/hmmb2.jpg" style="width:300px;height:auto;" alt="hmmb2.jpg">
-                <div class="caption"> HMMB Right </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media/apt1.jpg" style="width:300px;height:auto;" alt="apt1.jpg">
-                <div class="caption"> Apartment Left </div>
-            </td>
-            <td>
-                <img src="media/apt2.jpg" style="width:300px;height:auto;" alt="apt2.jpg">
-                <div class="caption"> Apartment Left </div>
-            </td>
-        </tr>
-    </table>
 
 
     <h1> Project 5B: Diffusion Models From Scratch! </h1>
 
     <h2> Background </h2>
     <p>
-        brudda
+        In this sub-project, we train diffusion models on MNIST datasets: Single-Step Denoising UNet, Time-Conditioning UNet and Class-Conditioning UNet.
+
+        Credits to my CS189 Homework 6 from last semester for inspiring my code for training the models.
     </p>
     
     <h2> 1. Training a Single-Step Denoising UNet </h2>
     <h3> Approach </h3>
     <p>
-        lol
+        Using the skeleton code and the diagram in project spec provided, I implemented the <code>Conv</code> and <code>UnconditionalUNet</code> classes. I then created the functions <code>add_noise</code> and <code>add_noise_to_dataset</code> to assist with adding noise to an image and an entire dataset. I ran these functions with <code>sigma=[0.0, 0.2, 0.4, 0.6, 0.8, 1.0]</code> on the dataset. Then I trained the model on the MNIST dataset and sampled results on the test set after the first and the fifth epoch and with out-of-distribution noise levels after the model is trained. The results are shown below:
     </p>
-    <h3> Harris Interest Points v.s. ANMS </h3>
     <table border="1">
         <tr>
             <td>
-                <img src="media4b/woz1_harris.jpg" style="width:400px;height:auto;" alt="woz1_harris.jpg">
-                <div class="caption"> Woz Left Harris Interest Points </div>
+                <img src="media5b/fig3.jpg" style="width:300px;height:auto;" alt="fig3.jpg">
+                <div class="caption"> Noising Process for Difference Sigmas </div>
             </td>
             <td>
-                <img src="media4b/woz1_anms.jpg" style="width:400px;height:auto;" alt="woz1_anms.jpg">
-                <div class="caption"> Woz Left ANMS </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media4b/woz2_harris.jpg" style="width:400px;height:auto;" alt="woz2_harris.jpg">
-                <div class="caption"> Woz Right Harris Interest Points </div>
+                <img src="media5b/fig4.jpg" style="width:300px;height:auto;" alt="fig4.jpg">
+                <div class="caption"> Training Loss Curve </div>
             </td>
             <td>
-                <img src="media4b/woz2_anms.jpg" style="width:400px;height:auto;" alt="woz2_anms.jpg">
-                <div class="caption"> Woz Right ANMS </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media4b/enclave1_harris.jpg" style="width:400px;height:auto;" alt="enclave1_harris.jpg">
-                <div class="caption"> Enclave Left Harris Interest Points </div>
+                <img src="media5b/fig5.jpg" style="width:300px;height:auto;" alt="fig5.jpg">
+                <div class="caption"> Sample Results on the Test Set (Epoch 1) </div>
             </td>
             <td>
-                <img src="media4b/enclave1_anms.jpg" style="width:400px;height:auto;" alt="enclave1_anms.jpg">
-                <div class="caption"> Enclave Left ANMS </div>
+                <img src="media5b/fig6.jpg" style="width:300px;height:auto;" alt="fig6.jpg">
+                <div class="caption"> Sample Results on the Test Set (Epoch 5) </div>
+            </td>
+            <td>
+                <img src="media5b/fig7.jpg" style="width:300px;height:auto;" alt="fig7.jpg">
+                <div class="caption"> Sample Results on the Test Set With Out-of-Distribution Noise Levels </div>
             </td>
         </tr>
+    </table>
+
+    <h2> 2. Training a Diffusion Model </h2>
+    <h3> Time-Conditioning UNet </h3>
+    <h3> Approach </h3>
+    <p>
+        Using the skeleton code and the diagram in project spec provided, I implemented the <code>FCBlock</code>, <code>TimeConditional</code> and <code>DDPM</code> classes, as well as the <code>ddpm_schedule</code>, <code>ddpm_forward</code> and <code>ddpm_sample</code>. Then I trained the model on the MNIST dataset and sampled results on the test set after the fifth and the twentieth epoch. The results are shown below:
+    </p>
+    <table border="1">
         <tr>
             <td>
-                <img src="media4b/enclave2_harris.jpg" style="width:400px;height:auto;" alt="enclave2_harris.jpg">
-                <div class="caption"> Enclave Right Harris Interest Points </div>
+                <img src="media5b/fig10.jpg" style="width:300px;height:auto;" alt="fig10.jpg">
+                <div class="caption"> Training Loss Curve </div>
             </td>
             <td>
-                <img src="media4b/enclave2_anms.jpg" style="width:400px;height:auto;" alt="enclave2_anms.jpg">
-                <div class="caption"> Enclave Right ANMS </div>
+                <img src="media5b/tc5.jpg" style="width:300px;height:auto;" alt="tc5.jpg">
+                <div class="caption"> Sample Results on the Test Set (Epoch 5) </div>
+            </td>
+            <td>
+                <img src="media5b/tc20.jpg" style="width:300px;height:auto;" alt="tc20.jpg">
+                <div class="caption"> Sample Results on the Test Set (Epoch 20) </div>
             </td>
         </tr>
+    </table>
+
+    <h3> Class-Conditioning UNet </h3>
+    <h3> Approach </h3>
+    <p>
+        My process for this part was essentially identical to the previous, except I added two extra <code>FCBlock</code>s, as mentioned in the spec. Then I once again trained the model on the MNIST dataset and sampled results on the test set after the fifth and the twentieth epoch. The results are shown below:
+    </p>
+    <table border="1">
         <tr>
             <td>
-                <img src="media4b/apt1_harris.jpg" style="width:400px;height:auto;" alt="apt1_harris.jpg">
-                <div class="caption"> Apartment Left Harris Interest Points </div>
+                <img src="media5b/ccloss.jpg" style="width:300px;height:auto;" alt="ccloss.jpg">
+                <div class="caption"> Training Loss Curve </div>
             </td>
             <td>
-                <img src="media4b/apt1_anms.jpg" style="width:400px;height:auto;" alt="apt1_anms.jpg">
-                <div class="caption"> Apartment Left ANMS </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media4b/apt2_harris.jpg" style="width:400px;height:auto;" alt="apt2_harris.jpg">
-                <div class="caption"> Apartment Right Harris Interest Points </div>
+                <img src="media5b/cc5.jpg" style="width:300px;height:auto;" alt="cc5.jpg">
+                <div class="caption"> Sample Results on the Test Set (Epoch 5) </div>
             </td>
             <td>
-                <img src="media4b/apt2_anms.jpg" style="width:400px;height:auto;" alt="apt2_anms.jpg">
-                <div class="caption"> Apartment Right ANMS </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media4b/hmmb1_harris.jpg" style="width:400px;height:auto;" alt="hmmb1_harris.jpg">
-                <div class="caption"> HMMB Left Harris Interest Points </div>
-            </td>
-            <td>
-                <img src="media4b/hmmb1_anms.jpg" style="width:400px;height:auto;" alt="hmmb1_anms.jpg">
-                <div class="caption"> HMMB Left ANMS </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img src="media4b/hmmb2_harris.jpg" style="width:400px;height:auto;" alt="hmmb2_harris.jpg">
-                <div class="caption"> HMMB Right Harris Interest Points </div>
-            </td>
-            <td>
-                <img src="media4b/hmmb2_anms.jpg" style="width:400px;height:auto;" alt="hmmb2_anms.jpg">
-                <div class="caption"> HMMB Right ANMS </div>
+                <img src="media5b/cc20.jpg" style="width:300px;height:auto;" alt="cc20.jpg">
+                <div class="caption"> Sample Results on the Test Set (Epoch 20) </div>
             </td>
         </tr>
     </table>
