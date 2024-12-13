@@ -45,46 +45,71 @@
   
     <h2> Background </h2>
     <p>
-        lightfield camera
+        Capturing multiple images over a plane orthogonal to the optical axis enables achieving complex effects using very simple operations like shifting and averaging.The goal of this project is to reproduce some of these effects using real lightfield data.
     </p>
 
 
     <h2> 1. Depth Refocusing </h2>
     <h3> Approach </h3>
     <p>
-        habibi
+        First, I took the image at <code>(8, 8)</code> to be the center image. Then I found the displacement between each image in the image set and the center image. For each image, I would shift it by <code>(c * dx, c * dy)</code>, where <code>c</code> is some constant and <code>dx, dy</code> are displacements in the <code>x</code> and <code>y</code> direction, respectively. After shifting the images, I took their average and returned the resulting image.
     </p>
-<!--     <table border="1">
+
+    <h3> Center Image </h3>
+    <img src="media/lightfieldcamera/center_im.jpg" style="width:300px;height:auto;" alt="center_im.jpg">
+    
+    <h3> Average Image </h3>
+    <img src="media/lightfieldcamera/avg_im.jpg" style="width:300px;height:auto;" alt="avg_im.jpg">
+    
+    <h3> Depth Refocusing on Different c-values </h3>
+    <table border="1">
         <tr>
             <td>
-                <img src="media5a/part1.2t250.jpg" style="width:300px;height:auto;" alt="part1.2t250.jpg">
+                <img src="media/lightfieldcamera/neg5.jpg" style="width:300px;height:auto;" alt="neg5.jpg">
+                <img src="media/lightfieldcamera/neg2.jpg" style="width:300px;height:auto;" alt="neg2.jpg">
+                <img src="media/lightfieldcamera/neg1.jpg" style="width:300px;height:auto;" alt="neg1.jpg">
             </td>
             <td>
-                <img src="media5a/part1.2t500.jpg" style="width:300px;height:auto;" alt="part1.2t500.jpg">
+                <img src="media/lightfieldcamera/nada.jpg" style="width:300px;height:auto;" alt="nada.jpg">
+                <img src="media/lightfieldcamera/pos1.jpg" style="width:300px;height:auto;" alt="pos1.jpg">
+                <img src="media/lightfieldcamera/pos2.jpg" style="width:300px;height:auto;" alt="pos2.jpg">
             </td>
             <td>
-                <img src="media5a/part1.2t750.jpg" style="width:300px;height:auto;" alt="part1.2t750.jpg">
+                <img src="media/lightfieldcamera/pos5.jpg" style="width:300px;height:auto;" alt="pos5.jpg">
             </td>
         </tr>
-    </table> -->
+    </table>
 
   <h2> 2. Aperture Adjustment </h2>
     <h3> Approach </h3>
     <p>
-        habibi
+        The idea of this part is to refocus based on a subset of images, which are all within some <code>radius</code> of the center image. For example, if <code>radius=2</code>, the subset would be a <code>5x5</code> grind around the center image. To do this, I first created a <code>17x17</code> grid to assist with finding the nearest images. Then, I found the refocused image (with <code>c=0.2</code> to focus on the center of the image) for each subset of images with integer radii in range <code>[0, 9]</code>. The results are shown below. 
     </p>
-<!--     <table border="1">
+
+    <h3> Apertures at Different Radii </h3>
+    <table border="1">
         <tr>
             <td>
-                <img src="media5a/part1.2t250.jpg" style="width:300px;height:auto;" alt="part1.2t250.jpg">
+                <img src="media/lightfieldcamera/r0.jpg" style="width:300px;height:auto;" alt="r0.jpg">
+                <img src="media/lightfieldcamera/r1.jpg" style="width:300px;height:auto;" alt="r1.jpg">
+                <img src="media/lightfieldcamera/r2.jpg" style="width:300px;height:auto;" alt="r2.jpg">
             </td>
             <td>
-                <img src="media5a/part1.2t500.jpg" style="width:300px;height:auto;" alt="part1.2t500.jpg">
+                <img src="media/lightfieldcamera/r3.jpg" style="width:300px;height:auto;" alt="r3.jpg">
+                <img src="media/lightfieldcamera/r4.jpg" style="width:300px;height:auto;" alt="r4.jpg">
+                <img src="media/lightfieldcamera/r5.jpg" style="width:300px;height:auto;" alt="r5.jpg">
             </td>
             <td>
-                <img src="media5a/part1.2t750.jpg" style="width:300px;height:auto;" alt="part1.2t750.jpg">
+                <img src="media/lightfieldcamera/r6.jpg" style="width:300px;height:auto;" alt="r6.jpg">
+                <img src="media/lightfieldcamera/r7.jpg" style="width:300px;height:auto;" alt="r7.jpg">
+                <img src="media/lightfieldcamera/r8.jpg" style="width:300px;height:auto;" alt="r8.jpg">
             </td>
         </tr>
-    </table> -->
+    </table>
+    
+    <h2> Summary </h2>
+    In this project, I learned that lightfields have very cool functions and complex effects, like adjusting parameters to change the focus of an image.
+
+    <h1> The Other Projects </h1>
 </body>
 </html>
