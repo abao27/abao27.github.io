@@ -116,23 +116,64 @@
     <h2> 2.1 Toy Problem </h2>
     <h3> Approach </h3>
     <p>
-        
+        For this part, we recover the original image using the minimization of <code>v</code> equation, listed on the project spec. I wrote each objective by following the hints in "Implementation Details", then using <code>scipy.sparse.linalg.lsqr</code> to solve for <code>v</code>. The results are shown below.
     </p>
     
-    <h3> Depth Refocusing on Different c-values </h3>
+    <h3> Original vs Reconstructed Images </h3>
     <table border="1">
         <tr>
-            <img src="media/gradientdomainfusion/nada.jpg" style="width:300px;height:auto;" alt="nada.jpg">
+            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
             <div class="caption"> Original Image </div>
-            <img src="media/gradientdomainfusion/pos1.jpg" style="width:300px;height:auto;" alt="pos1.jpg">
+            <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
             <div class="caption"> Reconstructed Image </div>
         </tr>
         <tr>
-            <img src="media/gradientdomainfusion/nada.jpg" style="width:300px;height:auto;" alt="nada.jpg">
+            <img src="media/gradientdomainfusion/toy.jpg" style="width:300px;height:auto;" alt="toy.jpg">
             <div class="caption"> Original Image </div>
-            <img src="media/gradientdomainfusion/pos1.jpg" style="width:300px;height:auto;" alt="pos1.jpg">
+            <img src="media/gradientdomainfusion/toygdf.jpg" style="width:300px;height:auto;" alt="toygdf.jpg">
             <div class="caption"> Reconstructed Image </div>
         </tr>
     </table>
+
+    <h2> 2.2 Poisson Blending </h2>
+    <h3> Approach </h3>
+    <p>
+        ... The results are shown below.
+    </p>
+    
+    <h3> Images, Masks, and Blending </h3>
+    <table border="1">
+        <tr>
+            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
+            <div class="caption"> Original Image </div>
+            <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
+            <div class="caption"> Reconstructed Image </div>
+            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
+            <div class="caption"> Original Image </div>
+            <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
+            <div class="caption"> Reconstructed Image </div>
+        </tr>
+        <tr>
+            <img src="media/gradientdomainfusion/toy.jpg" style="width:300px;height:auto;" alt="toy.jpg">
+            <div class="caption"> Original Image </div>
+            <img src="media/gradientdomainfusion/toygdf.jpg" style="width:300px;height:auto;" alt="toygdf.jpg">
+            <div class="caption"> Reconstructed Image </div>
+            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
+            <div class="caption"> Original Image </div>
+            <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
+            <div class="caption"> Reconstructed Image </div>
+        </tr>
+        <tr>
+            <img src="media/gradientdomainfusion/toy.jpg" style="width:300px;height:auto;" alt="toy.jpg">
+            <div class="caption"> Original Image </div>
+            <img src="media/gradientdomainfusion/toygdf.jpg" style="width:300px;height:auto;" alt="toygdf.jpg">
+            <div class="caption"> Reconstructed Image </div>
+            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
+            <div class="caption"> Original Image </div>
+            <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
+            <div class="caption"> Reconstructed Image </div>
+        </tr>
+    </table>
+    
 </body>
 </html>
