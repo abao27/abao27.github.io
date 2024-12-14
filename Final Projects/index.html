@@ -122,56 +122,66 @@
     <h3> Original vs Reconstructed Images </h3>
     <table border="1">
         <tr>
-            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Original Image </div>
-            <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
-            <div class="caption"> Reconstructed Image </div>
+            <td>
+                <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
+                <div class="caption"> Original Image </div>
+                <img src="media/gradientdomainfusion/penggdf.jpg" style="width:300px;height:auto;" alt="penggdf.jpg">
+                <div class="caption"> Reconstructed Image </div>
+            </td>
         </tr>
         <tr>
-            <img src="media/gradientdomainfusion/toy.jpg" style="width:300px;height:auto;" alt="toy.jpg">
-            <div class="caption"> Original Image </div>
-            <img src="media/gradientdomainfusion/toygdf.jpg" style="width:300px;height:auto;" alt="toygdf.jpg">
-            <div class="caption"> Reconstructed Image </div>
+            <td>
+                <img src="media/gradientdomainfusion/toy.jpg" style="width:300px;height:auto;" alt="toy.jpg">
+                <div class="caption"> Original Image </div>
+                <img src="media/gradientdomainfusion/toygdf.jpg" style="width:300px;height:auto;" alt="toygdf.jpg">
+                <div class="caption"> Reconstructed Image </div>
+            </td>
         </tr>
     </table>
 
     <h2> 2.2 Poisson Blending </h2>
     <h3> Approach </h3>
     <p>
-        For this part, I used a similar approach as the toy problem, but tweaking the parameters and calculations a little (e.g. only calculating the part of image overlapping with the mask and expanding <code>A</code> and <code>b</code> four-fold because of the calculations on the 4-neighborhood). Also like the last part, I followed the "Implementation Details" of part 2.1 to find the objectives. This time, I would subtract the pixel from some coordinate <code>(x,y)</code> from its 4-neighborhood. I once again used <code>scipy.sparse.linalg.lsqr</code> to solve for <code>v</code>. Then, I transfered the pixels from <code>v</code> to my output image. The results are shown below.
+        For this part, I used a similar approach as the toy problem, but tweaking the parameters and calculations a little (e.g. only calculating the part of image overlapping with the mask and expanding <code>A</code> and <code>b</code> four-fold because of the calculations on the 4-neighborhood). Also like the last part, I followed the "Implementation Details" of part 2.1 to find the objectives. This time, I would subtract the pixel from some coordinate <code>(x,y)</code> from its 4-neighborhood. I once again used <code>scipy.sparse.linalg.lsqr</code> to solve for <code>v</code>. Then, I transfered the pixels from <code>v</code> to my output image. The results are shown below. (Look! Oraple from project 2 is back!)
     </p>
     
     <h3> Images, Masks, and Blending </h3>
     <table border="1">
         <tr>
-            <img src="media/gradientdomainfusion/hikers.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Background Image </div>
-            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Object Image </div>
-            <img src="media/gradientdomainfusion/pengmask.jpg" style="width:300px;height:auto;" alt="pengmask.jpg">
-            <div class="caption"> Mask </div>
-            <img src="media/gradientdomainfusion/pengblend.jpg" style="width:300px;height:auto;" alt="pengblend.jpg">
-            <div class="caption"> Blended Image </div>
+            <td>
+                <img src="media/gradientdomainfusion/hikers.jpg" style="width:300px;height:auto;" alt="hikers.jpg">
+                <div class="caption"> Background Image </div>
+                <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
+                <div class="caption"> Object Image </div>
+                <img src="media/gradientdomainfusion/pengmask.jpg" style="width:300px;height:auto;" alt="pengmask.jpg">
+                <div class="caption"> Mask </div>
+                <img src="media/gradientdomainfusion/pengblend.jpg" style="width:300px;height:auto;" alt="pengblend.jpg">
+                <div class="caption"> Blended Image </div>
+            </td>
         </tr>
         <tr>
-            <img src="media/gradientdomainfusion/hikers.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Background Image </div>
-            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Object Image </div>
-            <img src="media/gradientdomainfusion/pengmask.jpg" style="width:300px;height:auto;" alt="pengmask.jpg">
-            <div class="caption"> Mask </div>
-            <img src="media/gradientdomainfusion/pengblend.jpg" style="width:300px;height:auto;" alt="pengblend.jpg">
-            <div class="caption"> Blended Image </div>
+            <td>
+                <img src="media/gradientdomainfusion/hojicha.jpg" style="width:300px;height:auto;" alt="hojicha.jpg">
+                <div class="caption"> Background Image </div>
+                <img src="media/gradientdomainfusion/anna.jpg" style="width:300px;height:auto;" alt="anna.jpg">
+                <div class="caption"> Object Image </div>
+                <img src="media/gradientdomainfusion/annamask.jpg" style="width:300px;height:auto;" alt="annamask.jpg">
+                <div class="caption"> Mask </div>
+                <img src="media/gradientdomainfusion/anahojicha.jpg" style="width:300px;height:auto;" alt="anahojicha.jpg">
+                <div class="caption"> Blended Image </div>
+            </td>
         </tr>
         <tr>
-            <img src="media/gradientdomainfusion/hikers.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Background Image </div>
-            <img src="media/gradientdomainfusion/peng.jpg" style="width:300px;height:auto;" alt="peng.jpg">
-            <div class="caption"> Object Image </div>
-            <img src="media/gradientdomainfusion/pengmask.jpg" style="width:300px;height:auto;" alt="pengmask.jpg">
-            <div class="caption"> Mask </div>
-            <img src="media/gradientdomainfusion/pengblend.jpg" style="width:300px;height:auto;" alt="pengblend.jpg">
-            <div class="caption"> Blended Image </div>
+            <td>
+                <img src="media/gradientdomainfusion/apple.jpg" style="width:300px;height:auto;" alt="apple.jpg">
+                <div class="caption"> Background Image </div>
+                <img src="media/gradientdomainfusion/orange.jpg" style="width:300px;height:auto;" alt="orange.jpg">
+                <div class="caption"> Object Image </div>
+                <img src="media/gradientdomainfusion/vert_mask.jpg" style="width:300px;height:auto;" alt="vert_mask.jpg">
+                <div class="caption"> Mask </div>
+                <img src="media/gradientdomainfusion/oraple.jpg" style="width:300px;height:auto;" alt="oraple.jpg">
+                <div class="caption"> Blended Image </div>
+            </td>
         </tr>
     </table>
     
